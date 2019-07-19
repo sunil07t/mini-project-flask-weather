@@ -1,0 +1,43 @@
+<html lang="en">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewpoint" content="width = device-width, initial-scale = 1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="static/style/style.css">
+	</head>
+   	<body>
+      	<div class="form-body">
+      		<form action = "/index" method = "POST" class="form-signin">
+	      		<h1 class="h3 mb-3 font-weight-normal top-header">Weather Forecast</h1>
+		      	<div class="form-label-group">
+		      		<input type="city" name="cityName" class="form-control" placeholder="City" required autofocus>
+		      	</div>
+		      	<button type="submit" class="btn btn-lg btn-info btn-block" type="submit">Search</button>
+      		</form>
+      	</div>
+      	<div class="row">
+      		{% if info_list | length > 1 %}
+      			<div class="col-sm current-stats">
+      				<h4>Current weather in {{info_list[3]}}</h4>
+      				<h4 class="current-temperature">{{info_list[0]}} F</h4>
+      				<img src="{{info_list[5]}}" width="20%" height="auto">
+      				<h5>{{info_list[6]}}</h5>
+      				<h5>Pressure: {{info_list[1]}} hPa</h5>
+      				<h5>Humidity: {{info_list[2]}}%</h5>	
+      			</div>
+	         	<div class="col-sm forecast-stats">
+	         		<h4>Next five days forecast</h4>
+	         		<img src="{{info_list[4]}}" width="100%" height="auto">	
+	         	</div>
+	        {% elif info_list[0] == 'error' %}
+	        	<div class="alert alert-warning error-help" role="alert">
+				  Please write the correct city name.
+				</div>
+	        {% endif %}   
+      	</div>
+	   	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   </body>
+</html>
